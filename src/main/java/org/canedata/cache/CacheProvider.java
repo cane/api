@@ -17,7 +17,7 @@ package org.canedata.cache;
 
 import java.util.Map;
 
-import org.canedata.module.Provider;
+import org.canedata.module.Module;
 
 /**
  * Supported cache manager implemented.
@@ -25,7 +25,7 @@ import org.canedata.module.Provider;
  * @author Yat-ton
  * @version 1.00.000 Sep 2, 2010 4:10:30 PM
  */
-public interface CacheProvider extends Provider {
+public interface CacheProvider extends Module {
 	/**
 	 * 
 	 * @param schema Used to cache partitions or implement different strategies.

@@ -17,9 +17,11 @@ package org.canedata.module;
 
 import java.util.Map;
 
+import org.canedata.bench.BenchProvider;
+import org.canedata.cache.CacheProvider;
+
 /**
- * Module provides extensions for Cane.
- * 
+ * Module provides extensions for Cane, including {@link CacheProvider}, {@link BenchProvider}.
  * @author Yat-ton
  * @version 1.00.000 2011-4-18 06:48:59
  */

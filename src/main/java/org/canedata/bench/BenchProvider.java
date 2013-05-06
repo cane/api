@@ -16,7 +16,7 @@
 package org.canedata.bench;
 
 import org.canedata.entity.EntityFactory;
-import org.canedata.module.Provider;
+import org.canedata.module.Module;
 
 /**
  * Allows the end user to redefine the operation process, methods, and the API definition. 
@@ -27,7 +27,7 @@ import org.canedata.module.Provider;
  * @author Yat-ton
  * @version 1.00.000 2011-4-22 05:29:10
  */
-public interface BenchProvider extends Provider {
+public interface BenchProvider extends Module {
 	/**
 	 * Pointcut of {@link EntityFactory} is required.
 	 * 

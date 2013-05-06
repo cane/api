@@ -16,11 +16,10 @@
 package org.canedata.module;
 
 import org.canedata.CaneProvider;
-import org.canedata.bench.BenchProvider;
-import org.canedata.cache.CacheProvider;
+import org.canedata.resource.ResourceProvider;
 
 /**
- * Provider is implemented functions that can be replaced,  including {@link ResourceProvider}, {@link CaneProvider}, {@link CacheProvider}, {@link BenchProvider}.
+ * Provider is implemented functions that can be replaced, including {@link ResourceProvider}, {@link CaneProvider}.
  * 
  * @author Yat-ton
  * @version 1.00.000 2011-4-22 05:26:07
