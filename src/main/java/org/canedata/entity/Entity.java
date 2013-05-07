@@ -44,23 +44,25 @@ public interface Entity extends Closeable, Cacheable {
 
 	/**
 	 * Get Entity name.
+	 * 
 	 * @return
 	 */
 	public String getName();
-	
+
 	/**
 	 * Get current label of entity.
+	 * 
 	 * @return
 	 */
 	public String getLabel();
-	
+
 	/**
 	 * {@link #getLabel()}
 	 * 
 	 * @return
 	 */
 	public String label();
-	
+
 	/**
 	 * Set entity label.
 	 * 
@@ -68,7 +70,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * @return
 	 */
 	public Entity label(String label);
-	
+
 	/**
 	 * {@link #label(String)} alias.
 	 * 
@@ -78,7 +80,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * @return
 	 */
 	public Entity alias(String label);
-	
+
 	// --------------------------------set field value to entity.
 	/**
 	 * put key/value to entity.
@@ -90,9 +92,9 @@ public interface Entity extends Closeable, Cacheable {
 	 */
 	public Entity put(String key, Object value);
 
-	
 	/**
-	 * Set all of the mappings from the specified map to this Entity. 
+	 * Set all of the mappings from the specified map to this Entity.
+	 * 
 	 * @param params
 	 * @return
 	 */
@@ -114,6 +116,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * same order.
 	 * 
 	 * <strong>Multi-primary key column is not recommended to use.</strong>
+	 * 
 	 * @param keys
 	 * @return Returns the results may contain some useful properties. The
 	 *         number of cases only contains the one or more ID field, such as
@@ -124,7 +127,7 @@ public interface Entity extends Closeable, Cacheable {
 	 *         </strong>
 	 */
 	public Fields create(Serializable... keys);
-	
+
 	/**
 	 * 
 	 * @see #create(Serializable...)
@@ -133,18 +136,21 @@ public interface Entity extends Closeable, Cacheable {
 	 * @return
 	 */
 	public Fields create(Map<String, Object> keys);
-	
+
 	/**
-	 * This is a convenience method for creating an item if it does not exist. 
-	 * The Keys is extracted from the data argument and a query-by-id is made on the database. 
-	 * If a Entity with the same id exists then all of the fields will be updated by {@link #put(String, Object)}. 
-	 * If the id is null (or 0 or some other default value) or doesn't exist then the object will be created. 
-	 * This also means that your data item must have an id field defined.
+	 * This is a convenience method for creating an item if it does not exist.
+	 * The Keys is extracted from the data argument and a query-by-id is made on
+	 * the database. If a Entity with the same id exists then all of the fields
+	 * will be updated by {@link #put(String, Object)}. If the id is null (or 0
+	 * or some other default value) or doesn't exist then the object will be
+	 * created. This also means that your data item must have an id field
+	 * defined.
+	 * 
 	 * @param keys
 	 * @return
 	 */
-	public Fields createOrUpdate(Serializable ...keys);
-	
+	public Fields createOrUpdate(Serializable... keys);
+
 	/**
 	 * @see #createOrUpdate(Serializable...)
 	 * 
@@ -152,12 +158,11 @@ public interface Entity extends Closeable, Cacheable {
 	 * @return
 	 */
 	public Fields createOrUpdate(Map<String, Object> keys);
-	
 
 	// ----------------------------------------------read and query
 	/**
-	 * <blockquote>
-	 * <b>Usage:</b>
+	 * <blockquote> <b>Usage:</b>
+	 * 
 	 * <pre>
 	 * e.projection("t.name as name", "max(t.age) as age").filter(...).group("name").list();
 	 * 
@@ -165,8 +170,9 @@ public interface Entity extends Closeable, Cacheable {
 	 * 
 	 * e.filter(...).list();
 	 * </pre>
+	 * 
 	 * </blockquote>
-	 *  
+	 * 
 	 * @param projections
 	 * @return Return itself.
 	 */
@@ -208,7 +214,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * @return
 	 */
 	public ExpressionBuilder filter();
-	
+
 	/**
 	 * To filter data set.
 	 * 
@@ -266,6 +272,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * </p>
 	 * 
 	 * Only returns the first record of the result set.
+	 * 
 	 * @see #filter()
 	 * 
 	 * @return
@@ -328,7 +335,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * @return
 	 */
 	public List<Fields> find(Expression expr);
-	
+
 	/**
 	 * Executable command.
 	 * 
@@ -340,7 +347,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * @return
 	 */
 	public List<Fields> find(Expression expr, int offset, int count);
-	
+
 	/**
 	 * Such as {@link #first()}.
 	 * 
@@ -348,16 +355,16 @@ public interface Entity extends Closeable, Cacheable {
 	 * @return
 	 */
 	public Fields findOne(Expression expr);
-	
+
 	/**
-	 * Finds the first element in the query and updates it.
-	 * This method is used needs to tie in with the method of {@link #put(String, Object)}.
+	 * Finds the first element in the query and updates it. This method is used
+	 * needs to tie in with the method of {@link #put(String, Object)}.
 	 * 
 	 * @param expr
 	 * @return
 	 */
 	public Fields findAndUpdate(Expression expr);
-	
+
 	// -----------------
 	/**
 	 * 
@@ -401,12 +408,14 @@ public interface Entity extends Closeable, Cacheable {
 
 	// -----------------
 	/**
-	 * <blockquote>
-	 * <b>Usage:</b>
+	 * <blockquote> <b>Usage:</b>
+	 * 
 	 * <pre>
 	 * e.union(e.revive("other").projection("f1", "f2", ...));
 	 * </pre>
+	 * 
 	 * </blockquote>
+	 * 
 	 * @param target
 	 * @return
 	 */
@@ -468,17 +477,18 @@ public interface Entity extends Closeable, Cacheable {
 	 * </p>
 	 * 
 	 * <p>
-	 * <i><b>Note: </b></i>
-	 *  If the operation returns multiple results, the actual returns only the first result.
+	 * <i><b>Note: </b></i> If the operation returns multiple results, the
+	 * actual returns only the first result.
 	 * </p>
 	 * 
-	 * <blockquote>
-	 * <b>Usage:</b>
+	 * <blockquote> <b>Usage:</b>
+	 * 
 	 * <pre>
 	 * e.filter(...).max("age") -> return int for age.
 	 * 
 	 * e.joinOn("class as c", Joint.LEFT, "e.id = c.school").filter(...).max("students")
 	 * </pre>
+	 * 
 	 * </blockquote>
 	 */
 	public Number max(String projection);
@@ -489,8 +499,8 @@ public interface Entity extends Closeable, Cacheable {
 	 * </p>
 	 * 
 	 * <p>
-	 * <i><b>Note: </b></i>
-	 *  If the operation returns multiple results, the actual returns only the first result.
+	 * <i><b>Note: </b></i> If the operation returns multiple results, the
+	 * actual returns only the first result.
 	 * </p>
 	 * 
 	 * @see #max(String)
@@ -506,17 +516,18 @@ public interface Entity extends Closeable, Cacheable {
 	 * </p>
 	 * 
 	 * <p>
-	 * <i><b>Note: </b></i>
-	 *  If the operation returns multiple results, the actual returns only the first result.
+	 * <i><b>Note: </b></i> If the operation returns multiple results, the
+	 * actual returns only the first result.
 	 * </p>
 	 * 
-	 * <blockquote>
-	 * <b>Usage:</b>
+	 * <blockquote> <b>Usage:</b>
+	 * 
 	 * <pre>
 	 * e.filter(...).sum("students")
 	 * 
 	 * e.filter(...).sum("distinct students")
 	 * </pre>
+	 * 
 	 * </blockquote>
 	 * 
 	 * @see #max(String)
@@ -532,12 +543,11 @@ public interface Entity extends Closeable, Cacheable {
 	 * </p>
 	 * 
 	 * <p>
-	 * <i><b>Note: </b></i>
-	 *  If the operation returns multiple results, the actual returns only the first result.
+	 * <i><b>Note: </b></i> If the operation returns multiple results, the
+	 * actual returns only the first result.
 	 * </p>
 	 * 
-	 * <blockquote>
-	 * <b>Usage:</b><code>
+	 * <blockquote> <b>Usage:</b><code>
 	 * e.filter(...).avg("age")
 	 * 
 	 * e.filter(...).avg("distinct age")
@@ -556,15 +566,16 @@ public interface Entity extends Closeable, Cacheable {
 	 * </p>
 	 * 
 	 * <p>
-	 * <i><b>Note: </b></i>
-	 *  If the operation returns multiple results, the actual returns only the first result.
+	 * <i><b>Note: </b></i> If the operation returns multiple results, the
+	 * actual returns only the first result.
 	 * </p>
 	 * 
-	 * <blockquote>
-	 * <b>Usage:</b>
+	 * <blockquote> <b>Usage:</b>
+	 * 
 	 * <pre>
 	 * e.filter(...).concat(":", "name", "phone") -> return Yat-ton:1233333
 	 * </pre>
+	 * 
 	 * </blockquote>
 	 * 
 	 * @param projections
@@ -577,24 +588,25 @@ public interface Entity extends Closeable, Cacheable {
 	 * @return
 	 */
 	public Number count();
-	
+
 	/**
 	 * <p>
 	 * Executable command.
 	 * </p>
 	 * 
 	 * <p>
-	 * <i><b>Note: </b></i>
-	 *  If the operation returns multiple results, the actual returns only the first result.
+	 * <i><b>Note: </b></i> If the operation returns multiple results, the
+	 * actual returns only the first result.
 	 * </p>
 	 * 
-	 * <blockquote>
-	 * <b>Usage:</b>
+	 * <blockquote> <b>Usage:</b>
+	 * 
 	 * <pre>
 	 * e.filter(...).count("*");
 	 * e.filter(...).count("distinct name")
 	 * e.filter(...).count("distinct name,age")
 	 * </pre>
+	 * 
 	 * </blockquote>
 	 * 
 	 * @param projection
@@ -609,14 +621,15 @@ public interface Entity extends Closeable, Cacheable {
 	 * @return
 	 */
 	public List<Fields> distinct(String projection);
-	
+
 	public List<Fields> distinct(String projection, Expression exp);
-	
+
 	// ----------------------------------------------update
 	/**
 	 * <p>
 	 * Executable command.
 	 * </p>
+	 * 
 	 * @see #put(String, Object)
 	 */
 	public int update(Serializable... keys);
@@ -655,18 +668,21 @@ public interface Entity extends Closeable, Cacheable {
 	/**
 	 * Marked as batch operations.
 	 * 
-	 * <blockquote>
-	 * <b>Automatically generated SQL pattern, based on puted fields. Such as:</b>
+	 * <blockquote> <b>Automatically generated SQL pattern, based on puted
+	 * fields. Such as:</b>
+	 * 
 	 * <pre>
-	 * b.put("name", "Yatton").put("gender", "man")
-	 * 	.add().put("name", "Mr. Sun").put("gender", "man")
-	 * 	.add().put("name", "Cane").put("gender", "man")
-	 * 	.insert();
+	 * b.put(&quot;name&quot;, &quot;Yatton&quot;).put(&quot;gender&quot;, &quot;man&quot;).add().put(&quot;name&quot;, &quot;Mr. Sun&quot;)
+	 * 		.put(&quot;gender&quot;, &quot;man&quot;).add().put(&quot;name&quot;, &quot;Cane&quot;).put(&quot;gender&quot;, &quot;man&quot;)
+	 * 		.insert();
 	 * </pre>
+	 * 
 	 * <b>Generated SQL: </b>
+	 * 
 	 * <pre>
 	 * insert into b(name, gender, desc) values(?, ?, ?)
 	 * </pre>
+	 * 
 	 * </blockquote>
 	 * 
 	 * @return
@@ -675,7 +691,12 @@ public interface Entity extends Closeable, Cacheable {
 
 	// ----------------------------------------------transaction
 	/**
-	 * Open transaction on entity.
+	 * Open transaction on entity. 
+	 * <blockquote>
+	 * The transaction is a related
+	 * thread in the same {@link EntityFactory}, then the same thread is always
+	 * on the same transaction object. 
+	 * </blockquote>
 	 * 
 	 * @return
 	 */
@@ -764,7 +785,8 @@ public interface Entity extends Closeable, Cacheable {
 
 	/**
 	 * Tied a new entity with the current entity. This means that two entities
-	 * share the same <code>Connection</code> and {@link org.canedata.ta.Transaction}.
+	 * share the same <code>Connection</code> and
+	 * {@link org.canedata.ta.Transaction}.
 	 * 
 	 * @param schema
 	 * @param name
