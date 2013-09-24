@@ -25,9 +25,9 @@ import org.canedata.field.Field;
  * <b>Batch insert:</b>
  * <pre>
  * e.batch()
- * .put(&quot;f&quot;, v)
+ * .put("f", v)
  * .add()
- * .put(&quot;f2&quot;, v2)
+ * .put("f", v2)
  * .create();
  * 
  * </pre>
@@ -63,7 +63,7 @@ import org.canedata.field.Field;
  * </pre> 
  * </blockquote>
  * 
- * @author Yat-ton
+ * @author Sun Yat-ton
  * @version 1.00.000 2010-12-2 03:45:34
  */
 public interface Batch<T extends Entity> {
