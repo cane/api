@@ -687,7 +687,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * 
 	 * @return
 	 */
-	public Batch<Entity> batch();
+	public Batch batch();
 
 	// ----------------------------------------------transaction
 	/**
@@ -719,14 +719,14 @@ public interface Entity extends Closeable, Cacheable {
 	public Entity transaction(TransactionHolder holder);
 
 	/**
-	 * @see javax.transaction.Transaction#rollback()
+	 * see javax.transaction.Transaction#rollback()
 	 * 
 	 * @return
 	 */
 	public Entity rollback();
 
 	/**
-	 * @see javax.transaction.Transaction#commit()
+	 * see javax.transaction.Transaction#commit()
 	 * 
 	 * @return
 	 */

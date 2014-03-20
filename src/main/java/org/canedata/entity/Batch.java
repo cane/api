@@ -1,12 +1,12 @@
 /**
  * Copyright 2013 CaneData.org
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,11 +28,12 @@ import org.canedata.field.Field;
  * .put("f", v)
  * .add()
  * .put("f", v2)
+ * .add()
  * .create();
- * 
+ *
  * </pre>
  * </blockquote>
- * 
+ * <p/>
  * <blockquote>
  * <b>Batch update:</b>
  * <pre>
@@ -46,7 +47,9 @@ import org.canedata.field.Field;
  * .update();
  * </pre>
  * </blockquote>
- * 
+ *
+ * <p/>
+ *
  * <blockquote>
  * <b>Batch delete:</b>
  * <pre>
@@ -55,58 +58,79 @@ import org.canedata.field.Field;
  * .add(e.expr().equals("age", 19))
  * .delete();
  * </pre>
+ *
+ * <pre>
+ * e.batch().add().delete();//WARNING:  throw java.lang.IllegalAccessException.
+ * </pre>
  * </blockquote>
- * 
+ *
+ * <p/>
+ *
  * <blockquote>
  * <pre>
- * int changedRows = e.getInt("_affected"); 
- * </pre> 
+ * int changedRows = fields.getInt("_affected");
+ * </pre>
  * </blockquote>
- * 
+ *
  * @author Sun Yat-ton
  * @version 1.00.000 2010-12-2 03:45:34
  */
-public interface Batch<T extends Entity> {
-	/**
-	 * @param field
-	 * @param value
-	 * @return Return self.
-	 */
-	public Batch<T> put(String field, Object value);
+public interface Batch {
+    /**
+     * @param field
+     * @param value
+     * @return Return self.
+     */
+    public Batch put(String field, Object value);
 
-	/**
-	 * 
-	 * @param values
-	 * @return Return self.
-	 */
-	public Batch<T> putAll(Map<String, Object> values);
+    /**
+     * @param values
+     * @return Return self.
+     */
+    public Batch putAll(Map<String, Object> values);
 
-	/**
-	 * 
-	 * @return Return new instance of Batch.
-	 */
-	public Batch<T> add();
-	
-	/**
-	 * Applies to the update, and delete operations, 
-	 * the Parameter will be ignored when creating.
-	 * 
-	 * @param expr
-	 * @return
-	 */
-	public Batch<T> add(Expression expr);
+    /**
+     * @return Return new instance of BatchAction.
+     */
+    public BatchAction add();
 
-	/**
-	 * Clear all of the added item.
-	 * 
-	 * @return Return self.
-	 */
-	public Batch<T> clear();
+    /**
+     * Applies to the update, and delete operations,
+     * the Parameter will be ignored when creating.
+     *
+     * @param expr
+     * @return
+     */
+    public BatchAction add(Expression expr);
 
-	public Field create();
+    /**
+     * Clear all of the added item.
+     *
+     * @return Return self.
+     */
+    public Batch clear();
 
-	public Field update();
 
-	public Field delete();
+    public interface BatchAction<T extends Entity> extends Batch{
+        /**
+         * If use the method of {@link #add(org.canedata.expression.Expression)},  Expression will be ignored.
+         * @return
+         */
+        public Field create();
+
+        /**
+         *
+         * @return
+         * @exception java.lang.IllegalAccessException when calling the Add method, but does not specify an expression.
+         */
+        public Field update();
+
+        /**
+         *
+         * @return
+         * @exception java.lang.IllegalAccessException when calling the Add method, but does not specify an expression.
+         */
+        public Field delete();
+    }
 
 }

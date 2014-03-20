@@ -25,7 +25,7 @@ public interface Cacheable {
 	/**
 	 * @return
 	 */
-	public String getKey();
+	public Object getKey();
 	
 	/**
 	 * If restored from cache.
