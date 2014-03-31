@@ -33,7 +33,7 @@ public interface Cache {
 	 * @param key
 	 * @return
 	 */
-	public Object restore(Object key);
+	public <T> T restore(Object key);
 	
 	/**
 	 *  Removes an Object from the Cache.
