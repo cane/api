@@ -17,9 +17,9 @@ package org.canedata.ta;
 
 
 /**
- * The Transaction interface definition, reference to {@link javax.transaction.Transaction}.
+ * The Transaction interface definition, reference to javax.transaction.Transaction.
  * 
- * @see javax.transaction.Transaction
+ * see javax.transaction.Transaction
  * 
  * @author Yat-ton
  * @version 1.00.000 2011-4-17 12:43:18

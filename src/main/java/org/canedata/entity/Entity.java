@@ -122,7 +122,7 @@ public interface Entity extends Closeable, Cacheable {
 	 *         number of cases only contains the one or more ID field, such as
 	 *         generated automatically ID.
 	 * 
-	 *         More field may be in the context of programming environment. <br/>
+	 *         More field may be in the context of programming environment.
 	 *         <strong>The return value will be overwritten by next create.
 	 *         </strong>
 	 */
@@ -161,7 +161,7 @@ public interface Entity extends Closeable, Cacheable {
 
 	// ----------------------------------------------read and query
 	/**
-	 * <blockquote> <b>Usage:</b>
+	 * <b>Usage:</b>
 	 * 
 	 * <pre>
 	 * e.projection("t.name as name", "max(t.age) as age").filter(...).group("name").list();
@@ -171,8 +171,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * e.filter(...).list();
 	 * </pre>
 	 * 
-	 * </blockquote>
-	 * 
+	 *
 	 * @param projections
 	 * @return Return itself.
 	 */
@@ -408,13 +407,11 @@ public interface Entity extends Closeable, Cacheable {
 
 	// -----------------
 	/**
-	 * <blockquote> <b>Usage:</b>
+	 * <b>Usage:</b>
 	 * 
 	 * <pre>
 	 * e.union(e.revive("other").projection("f1", "f2", ...));
 	 * </pre>
-	 * 
-	 * </blockquote>
 	 * 
 	 * @param target
 	 * @return
@@ -481,15 +478,14 @@ public interface Entity extends Closeable, Cacheable {
 	 * actual returns only the first result.
 	 * </p>
 	 * 
-	 * <blockquote> <b>Usage:</b>
+	 * <b>Usage:</b>
 	 * 
 	 * <pre>
-	 * e.filter(...).max("age") -> return int for age.
+	 * e.filter(...).max("age") -&gt; return int for age.
 	 * 
 	 * e.joinOn("class as c", Joint.LEFT, "e.id = c.school").filter(...).max("students")
 	 * </pre>
 	 * 
-	 * </blockquote>
 	 */
 	public Number max(String projection);
 
@@ -520,7 +516,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * actual returns only the first result.
 	 * </p>
 	 * 
-	 * <blockquote> <b>Usage:</b>
+	 * <b>Usage:</b>
 	 * 
 	 * <pre>
 	 * e.filter(...).sum("students")
@@ -528,8 +524,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * e.filter(...).sum("distinct students")
 	 * </pre>
 	 * 
-	 * </blockquote>
-	 * 
+	 *
 	 * @see #max(String)
 	 * 
 	 * @param projection
@@ -547,12 +542,13 @@ public interface Entity extends Closeable, Cacheable {
 	 * actual returns only the first result.
 	 * </p>
 	 * 
-	 * <blockquote> <b>Usage:</b><code>
+	 * <b>Usage:</b>
+     * <pre>
 	 * e.filter(...).avg("age")
 	 * 
 	 * e.filter(...).avg("distinct age")
-	 * </blockquote>
-	 * 
+	 *</pre>
+     *
 	 * @see #max(String)
 	 * 
 	 * @param projection
@@ -570,14 +566,13 @@ public interface Entity extends Closeable, Cacheable {
 	 * actual returns only the first result.
 	 * </p>
 	 * 
-	 * <blockquote> <b>Usage:</b>
+	 * <b>Usage:</b>
 	 * 
 	 * <pre>
-	 * e.filter(...).concat(":", "name", "phone") -> return Yat-ton:1233333
+	 * e.filter(...).concat(":", "name", "phone") -&gt; return Yat-ton:1233333
 	 * </pre>
 	 * 
-	 * </blockquote>
-	 * 
+	 *
 	 * @param projections
 	 * @return
 	 */
@@ -599,7 +594,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * actual returns only the first result.
 	 * </p>
 	 * 
-	 * <blockquote> <b>Usage:</b>
+	 * <b>Usage:</b>
 	 * 
 	 * <pre>
 	 * e.filter(...).count("*");
@@ -607,8 +602,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * e.filter(...).count("distinct name,age")
 	 * </pre>
 	 * 
-	 * </blockquote>
-	 * 
+	 *
 	 * @param projection
 	 * @return
 	 */
@@ -668,7 +662,7 @@ public interface Entity extends Closeable, Cacheable {
 	/**
 	 * Marked as batch operations.
 	 * 
-	 * <blockquote> <b>Automatically generated SQL pattern, based on puted
+	 * <b>Automatically generated SQL pattern, based on puted
 	 * fields. Such as:</b>
 	 * 
 	 * <pre>
@@ -683,8 +677,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * insert into b(name, gender, desc) values(?, ?, ?)
 	 * </pre>
 	 * 
-	 * </blockquote>
-	 * 
+	 *
 	 * @return
 	 */
 	public Batch batch();
@@ -692,12 +685,11 @@ public interface Entity extends Closeable, Cacheable {
 	// ----------------------------------------------transaction
 	/**
 	 * Open transaction on entity. 
-	 * <blockquote>
+	 *
 	 * The transaction is a related
 	 * thread in the same {@link EntityFactory}, then the same thread is always
 	 * on the same transaction object. 
-	 * </blockquote>
-	 * 
+	 *
 	 * @return
 	 */
 	public Transaction openTransaction();

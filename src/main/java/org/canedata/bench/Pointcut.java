@@ -30,7 +30,7 @@ public interface Pointcut {
 	public String getName();
 
 	/**
-	 * Wrapped the {@link EntityFactory} or {@link Entity} to {@link Bench}.
+	 * Wrapped the {@link org.canedata.entity.EntityFactory} or {@link org.canedata.entity.Entity} to {@link Bench}.
 	 * 
 	 * @param target
 	 *            Instance of EntityFactory or Entity, etc..

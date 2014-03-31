@@ -121,14 +121,12 @@ public interface Batch {
         /**
          *
          * @return
-         * @exception java.lang.IllegalAccessException when calling the Add method, but does not specify an expression.
          */
         public Field update();
 
         /**
          *
          * @return
-         * @exception java.lang.IllegalAccessException when calling the Add method, but does not specify an expression.
          */
         public Field delete();
     }

@@ -21,7 +21,7 @@ import org.canedata.resource.Resource;
 
 /**
  * <h3>Usage:</h3>
- * <blockquote>
+ *
  * <pre>
  * 		CaneProvider provider = ...
  * 		ResourceProvider rp = ...
@@ -30,8 +30,7 @@ import org.canedata.resource.Resource;
  * 		Entity e = factory.get("entity name");
  * 		...
  * </pre>
- * </blockquote>
- * 
+ *
  * @author Yat-ton
  * @version 1.00.000 Sep 2, 2010 5:46:45 PM
  */
@@ -45,7 +44,6 @@ public interface EntityFactory {
 	 * The name can be name or name with schema. 
 	 * </p>
 	 * 
-	 * <blockauote>
 	 * <b>Directly use name: </b>
 	 * 
 	 * <pre>
@@ -57,14 +55,12 @@ public interface EntityFactory {
 	 * <pre>
 	 * get("schema.name");
 	 * </pre>
-	 * </blockquote>
-	 * 
+	 *
 	 * <p>
 	 * Can use the following two ways to assign a short alias to entity, easy to
 	 * join multiple entities.
 	 * </p>
 	 * 
-	 * <blockquote>
 	 * <b>Name+space+alias: </b>
 	 * 
 	 * <pre>
@@ -77,8 +73,7 @@ public interface EntityFactory {
 	 * get("tableName as a1");
 	 * </pre>
 	 * 
-	 * </blockquote>
-	 * 
+	 *
 	 * @param name
 	 *            Entity name.
 	 * @return
