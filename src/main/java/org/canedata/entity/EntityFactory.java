@@ -34,7 +34,7 @@ import org.canedata.resource.Resource;
  * @author Yat-ton
  * @version 1.00.000 Sep 2, 2010 5:46:45 PM
  */
-public interface EntityFactory {
+public interface EntityFactory<T extends Entity> {
 	public String getName();
 
 	/**
@@ -78,7 +78,7 @@ public interface EntityFactory {
 	 *            Entity name.
 	 * @return
 	 */
-	public Entity get(String name);
+	public T get(String name);
 
 	/**
 	 * @see #get(String)
@@ -87,7 +87,7 @@ public interface EntityFactory {
 	 * @param name
 	 * @return
 	 */
-	public Entity get(String schema, String name);
+	public T get(String schema, String name);
 
 	/**
 	 * @see #get(String)
@@ -96,7 +96,7 @@ public interface EntityFactory {
 	 * @param name
 	 * @return
 	 */
-	public Entity get(Resource<?> res, String name);
+	public T get(Resource<?> res, String name);
 
 	/**
 	 * @see #get(String, String)
@@ -106,7 +106,7 @@ public interface EntityFactory {
 	 * @param name
 	 * @return
 	 */
-	public Entity get(Resource<? extends Object> res, String schema, String name);
+	public T get(Resource<? extends Object> res, String schema, String name);
 
 	public CacheProvider getCacheProvider();
 
