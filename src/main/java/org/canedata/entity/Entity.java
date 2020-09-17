@@ -21,6 +21,7 @@ import java.util.Map;
 
 import org.canedata.Closeable;
 import org.canedata.cache.Cacheable;
+import org.canedata.exception.AnalyzeBehaviourException;
 import org.canedata.expression.Expression;
 import org.canedata.expression.ExpressionBuilder;
 import org.canedata.field.Fields;
@@ -362,7 +363,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * @param expr
 	 * @return
 	 */
-	public Fields findAndUpdate(Expression expr);
+	public Fields findOneAndUpdate(Expression expr);
 
 	// -----------------
 	/**
@@ -626,7 +627,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * 
 	 * @see #put(String, Object)
 	 */
-	public int update(Serializable... keys);
+	public long update(Serializable... keys);
 
 	/**
 	 * <p>
@@ -638,7 +639,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * @param expr
 	 * @return
 	 */
-	public int updateRange(Expression expr);
+	public long updateRange(Expression expr);
 
 	// ----------------------------------------------delete
 	/**
@@ -646,7 +647,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * Executable command.
 	 * </p>
 	 */
-	public int delete(Serializable... keys);
+	public long delete(Serializable... keys);
 
 	/**
 	 * <p>
@@ -656,7 +657,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * @param expr
 	 * @return
 	 */
-	public int deleteRange(Expression expr);
+	public long deleteRange(Expression expr);
 
 	// ----------------------------------------------batch
 	/**
@@ -728,7 +729,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * <p>
 	 * End transaction if the transaction opened. If the transaction is not
 	 * open, throw an exception(
-	 * {@link javax.transaction.TransactionRequiredException}).
+	 * javax.transaction.TransactionRequiredException).
 	 * </p>
 	 * <h3>Such as:</h3>
 	 * 
