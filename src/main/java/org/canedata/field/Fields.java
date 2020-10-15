@@ -20,6 +20,7 @@ import java.io.Reader;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Date;
 
+import org.canedata.Wrapper;
 import org.canedata.cache.Cacheable;
 
 /**
@@ -27,7 +28,8 @@ import org.canedata.cache.Cacheable;
  * @author Yat-ton
  * @version 1.00.000 2011-4-27 21:50:30
  */
-public interface Fields extends Cacheable {
+public interface Fields extends Cacheable, Wrapper {
+
 	public <T> T get(String field);
 	
 	public boolean contains(String field);
@@ -41,25 +43,46 @@ public interface Fields extends Cacheable {
 	
 	public char getChar(String field);
 
+	public char getChar(String field, char defaultValue);
+
 	public int getInt(String field);
+
+	public int getInt(String field, int defaultValue);
 
 	public boolean getBoolean(String field);
 
+	public boolean getBoolean(String field, boolean defaultValue);
+
 	public double getDouble(String field);
+	public double getDouble(String field, double defaultValue);
 
 	public float getFloat(String field);
 
+	public float getFloat(String field, float defaultValue);
+
 	public byte getByte(String field);
+
+	public byte getByte(String field, byte defaultValue);
 
 	public byte[] getBytes(String field);
 
+	public byte[] getBytes(String field, byte[] defaultValue);
+
 	public String getString(String field);
+
+	public String getString(String field, String defaultValue);
 
 	public long getLong(String field);
 
+	public long getLong(String field, long defaultValue);
+
 	public short getShort(String field);
-	
+
+	public short getShort(String field, short defaultValue);
+
 	public Date getDate(String field);
+
+	public Date getDate(String field, Date defaultValue);
 
 	public InputStream getInputStream(String field);
 
