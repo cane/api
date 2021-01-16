@@ -15,13 +15,15 @@
  */
 package org.canedata.cache;
 
+import java.io.Serializable;
+
 /**
  * Mark an object can be cached.
  * 
  * @author Yat-ton
  * @version 1.00.000 Sep 2, 2010 4:04:24 PM
  */
-public interface Cacheable {
+public interface Cacheable extends Serializable {
 	/**
 	 * @return
 	 */
