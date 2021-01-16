@@ -21,12 +21,9 @@ package org.canedata;
  * @author Yat-ton
  * @version 1.00.000 2010-11-1
  */
-public interface Closeable {
-	/**
-	 * Close connection, release resources, reset state.
-	 */
+public interface Closeable extends java.io.Closeable {
 	public void close();
-	
+
 	/**
 	 * Determine if the resource has been closed.
 	 * 
