@@ -15,12 +15,14 @@
  */
 package org.canedata.cache;
 
+import org.canedata.Wrapper;
+
 /**
  * 
  * @author Yat-ton
  * @version 1.00.000 Sep 2, 2010 3:59:48 PM
  */
-public interface Cache {
+public interface Cache extends Wrapper {
 	/**
 	 * 
 	 * @param target
