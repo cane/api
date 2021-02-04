@@ -71,11 +71,11 @@ import org.canedata.resource.ResourceProvider;
  * @author Yat-ton
  * @version 1.00.000 Sep 2, 2010 11:14:03 PM
  */
-public interface CaneProvider extends Module {
+public interface CaneProvider<T extends EntityFactory> extends Module {
 	
-	public EntityFactory getFactory(String name, ResourceProvider resourceProvider);
+	public T getFactory(String name, ResourceProvider resourceProvider);
 
-	public EntityFactory getFactory(String name, ResourceProvider resourceProvider, CacheProvider cache);
+	public T getFactory(String name, ResourceProvider resourceProvider, CacheProvider cache);
 	
 	public <B extends Bench> B getFactory(String name, ResourceProvider resourceProvider, BenchProvider benchProvider);
 
