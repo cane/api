@@ -15,19 +15,18 @@
  */
 package org.canedata.entity;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
-
 import org.canedata.Closeable;
 import org.canedata.cache.Cacheable;
-import org.canedata.exception.AnalyzeBehaviourException;
 import org.canedata.expression.Expression;
 import org.canedata.expression.ExpressionBuilder;
 import org.canedata.field.Fields;
 import org.canedata.field.WritableField;
 import org.canedata.ta.Transaction;
 import org.canedata.ta.TransactionHolder;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -112,13 +111,15 @@ public interface Entity extends Closeable, Cacheable {
 	public WritableField field(String field);
 
 	// ----------------------------------------------create
+	public Fields create();
+
 	/**
 	 * Can be keys or other arbitrary parameters, and the primary key in the
 	 * same order.
 	 * 
 	 * <strong>Multi-primary key column is not recommended to use.</strong>
 	 * 
-	 * @param keys
+	 * @param key
 	 * @return Returns the results may contain some useful properties. The
 	 *         number of cases only contains the one or more ID field, such as
 	 *         generated automatically ID.
@@ -127,16 +128,18 @@ public interface Entity extends Closeable, Cacheable {
 	 *         <strong>The return value will be overwritten by next create.
 	 *         </strong>
 	 */
-	public Fields create(Serializable... keys);
+	public Fields create(Serializable key);
 
 	/**
 	 * 
-	 * @see #create(Serializable...)
+	 * @see #create(Serializable)
 	 * 
 	 * @param keys
 	 * @return
 	 */
 	public Fields create(Map<String, Object> keys);
+
+	public Fields createOrUpdate();
 
 	/**
 	 * This is a convenience method for creating an item if it does not exist.
@@ -147,13 +150,13 @@ public interface Entity extends Closeable, Cacheable {
 	 * created. This also means that your data item must have an id field
 	 * defined.
 	 * 
-	 * @param keys
+	 * @param key
 	 * @return
 	 */
-	public Fields createOrUpdate(Serializable... keys);
+	public Fields createOrUpdate(Serializable key);
 
 	/**
-	 * @see #createOrUpdate(Serializable...)
+	 * @see #createOrUpdate(Serializable)
 	 * 
 	 * @param keys
 	 * @return
@@ -191,10 +194,10 @@ public interface Entity extends Closeable, Cacheable {
 	 * Executable command.
 	 * </p>
 	 * 
-	 * @param keys
+	 * @param key
 	 * @return Return self.
 	 */
-	public Fields restore(Serializable... keys);
+	public Fields restore(Serializable key);
 
 	/**
 	 * You can also be used directly method to build by Provider.
@@ -240,7 +243,7 @@ public interface Entity extends Closeable, Cacheable {
 	public Entity orderDESC(String... orderingTerm);
 
 	/**
-	 * @see #limit(int, int)
+	 * @see #limit(long, int)
 	 * 
 	 * @param count
 	 * @return Return self.
@@ -248,23 +251,26 @@ public interface Entity extends Closeable, Cacheable {
 	public Entity limit(int count);
 
 	/**
-	 * If don't use union, then it is same {@link #list(int, int)}, but if the
-	 * {@link #list(int, int)} specifies a new value, were covered by
-	 * {@link #list(int, int)}.
+	 * If don't use union, then it is same {@link #list(long, int)}, but if the
+	 * {@link #list(long, int)} specifies a new value, were covered by
+	 * {@link #list(long, int)}.
 	 * 
 	 * @param offset
 	 * @param count
 	 * @return Return self.
 	 */
-	public Entity limit(int offset, int count);
+	public Entity limit(long offset, int count);
 
 	/**
-	 * Checks whether entity exists by the specified keys.
+	 * Checks whether entity exists by the specified fields.
+	 * Can use Expression filter records.
+	 *
+	 * @see #filter(Expression)
 	 * 
-	 * @param keys
+	 * @param fields
 	 * @return
 	 */
-	public boolean exists(Serializable... keys);
+	public boolean exists(Serializable... fields);
 
 	/**
 	 * <p>
@@ -326,7 +332,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * @param count
 	 * @return
 	 */
-	public List<Fields> list(int offset, int count);
+	public List<Fields> list(long offset, int count);
 
 	/**
 	 * @see #find(Expression, int, int)
@@ -620,6 +626,8 @@ public interface Entity extends Closeable, Cacheable {
 	public List<Fields> distinct(String projection, Expression exp);
 
 	// ----------------------------------------------update
+	public long update();
+
 	/**
 	 * <p>
 	 * Executable command.
@@ -627,7 +635,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * 
 	 * @see #put(String, Object)
 	 */
-	public long update(Serializable... keys);
+	public long update(Serializable key);
 
 	/**
 	 * <p>
@@ -642,12 +650,14 @@ public interface Entity extends Closeable, Cacheable {
 	public long updateRange(Expression expr);
 
 	// ----------------------------------------------delete
+	public long delete();
+
 	/**
 	 * <p>
 	 * Executable command.
 	 * </p>
 	 */
-	public long delete(Serializable... keys);
+	public long delete(Serializable key);
 
 	/**
 	 * <p>
@@ -700,7 +710,7 @@ public interface Entity extends Closeable, Cacheable {
 	 * 
 	 * @return
 	 */
-	public Entity transaction();
+	public Transaction transaction();
 
 	/**
 	 * @see #openTransaction()
@@ -709,21 +719,21 @@ public interface Entity extends Closeable, Cacheable {
 	 *            holder of transaction.
 	 * @return
 	 */
-	public Entity transaction(TransactionHolder holder);
+	public Transaction transaction(TransactionHolder holder);
 
 	/**
 	 * see javax.transaction.Transaction#rollback()
 	 * 
 	 * @return
 	 */
-	public Entity rollback();
+	public void rollback();
 
 	/**
 	 * see javax.transaction.Transaction#commit()
 	 * 
 	 * @return
 	 */
-	public Entity commit();
+	public void commit();
 
 	/**
 	 * <p>
@@ -743,7 +753,7 @@ public interface Entity extends Closeable, Cacheable {
 	 *            commit transaction if true, or rollback transaction if false.
 	 * @return Return current entity.
 	 */
-	public Entity end(boolean expr);
+	public void end(boolean expr);
 
 	// ----------------------------------------------procedure
 	/**
