@@ -35,7 +35,9 @@ public interface Cache extends Wrapper {
 	 * @param key
 	 * @return
 	 */
-	public <T> T restore(Object key);
+	public <T extends Cacheable> T restore(Object key);
+
+	public <T extends Cacheable> T restore(Object key, Class<T> type);
 	
 	/**
 	 *  Removes an Object from the Cache.
