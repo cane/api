@@ -15,6 +15,8 @@
  */
 package org.canedata.cache;
 
+import org.canedata.Wrapper;
+
 import java.io.Serializable;
 
 /**
@@ -23,7 +25,7 @@ import java.io.Serializable;
  * @author Yat-ton
  * @version 1.00.000 Sep 2, 2010 4:04:24 PM
  */
-public interface Cacheable extends Serializable {
+public interface Cacheable extends Serializable, Wrapper {
 	/**
 	 * @return
 	 */
